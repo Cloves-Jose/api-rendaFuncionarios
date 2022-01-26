@@ -1,3 +1,4 @@
+const { type } = require("express/lib/response")
 const TabelaFuncionarios = require("../repository/TabelaFuncionarios")
 
 class Funcionario {
@@ -11,7 +12,6 @@ class Funcionario {
     }
 
     async criar() {
-
         const resultado = await TabelaFuncionarios.inserir({
             nome: this.nome,
             salario: this.salario
