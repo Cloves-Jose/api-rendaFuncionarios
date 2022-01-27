@@ -1,5 +1,6 @@
 const TabelaFuncionarios = require("../repository/TabelaFuncionarios")
 
+
 class Funcionario {
     constructor({id, nome, salario, dataCriacao, dataAtualizacao, versao}) {
         this.id = id
@@ -11,7 +12,6 @@ class Funcionario {
     }
 
     async criar() {
-
         const resultado = await TabelaFuncionarios.inserir({
             nome: this.nome,
             salario: this.salario
@@ -20,6 +20,16 @@ class Funcionario {
         this.id = resultado.id
         this.dataCriacao = resultado.dataCriacao
         this.dataAtualizacao = resultado.dataAtualizacao
+        this.versao = resultado.versao
+    }
+
+    async carregar() {
+        const encontrado = await TabelaFuncionarios.listarPorId(this.id)
+        this.nome = encontrado.nome
+        this.salario = encontrado.salario
+        this.dataCriacao = encontrado.dataCriacao
+        this.dataAtualizacao = encontrado.dataAtualizacao
+        this.versao = encontrado.versao
     }
 }
 
