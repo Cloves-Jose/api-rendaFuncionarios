@@ -5,6 +5,7 @@ const Op = Sequelize.Op
 module.exports = {
     listarPorSalario() {
         return Modelo.findAll({
+            raw: true,
             where: {
                 salario: {
                     [Op.gte]:5000
